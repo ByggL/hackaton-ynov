@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../style.css';
 
 interface LineItemProps {
     title: string;
@@ -10,14 +11,16 @@ interface LineItemProps {
 
 const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, is_done }) => {
     const [timeLeft, setTimeLeft] = useState('');
+    const [timeClass, setTimeClass] = useState('');
 
-    // Function to calculate the time left until the end date
+    // Function to calculate the time left and update the CSS class based on the remaining time
     const calculateTimeLeft = () => {
         const now = new Date();
         const end = new Date(endDate);
         const difference = end.getTime() - now.getTime();
 
         if (difference <= 0) {
+            setTimeClass('time-up');
             return "Time's up";
         }
 
@@ -25,14 +28,25 @@ const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, is_done }
         const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((difference / (1000 * 60)) % 60);
 
+        // Update the CSS class based on the remaining time
+        if (difference <= 2 * 24 * 60 * 60 * 1000) {
+            setTimeClass('red'); // Less than or equal to 2 days
+        } else if (difference <= 7 * 24 * 60 * 60 * 1000) {
+            setTimeClass('orange'); // Less than or equal to 7 days
+        } else {
+            setTimeClass('green'); // More than 7 days
+        }
+
         return `${days}d ${hours}h ${minutes}m`;
     };
 
-    // Update the countdown every second
+    // Update the countdown every minute
     useEffect(() => {
         const timer = setInterval(() => {
             setTimeLeft(calculateTimeLeft());
-        }, 1000);
+        }, 60000);
+
+        setTimeLeft(calculateTimeLeft());
 
         return () => clearInterval(timer);
     }, [endDate]);
@@ -47,13 +61,18 @@ const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, is_done }
     });
 
     return (
-        <div className="line-item">
+        <div className={`line-item ${timeClass}`}>
             <a href={repoLink} target="_blank" rel="noopener noreferrer">
-                <h3>{title}</h3>
+                <h2>{title}</h2>
             </a>
-            <p>End date: {formattedEndDate} | {timeLeft}</p>
-            {/* disabled={is_done} */}
-            <button onClick={() => {
+                        
+            <div className="content">
+                <div className="info">
+                    <p>Date de fin : {formattedEndDate}</p>
+                    <p>Compte à rebours : {timeLeft}</p>
+                </div>
+                <div className="action">
+                <button onClick={() => {
                 if(!is_done) {
                     browser.runtime.sendMessage({type: "toggle_done", title: title, value: true});
                     browser.runtime.sendMessage({type: "fetch_api"})
@@ -63,6 +82,8 @@ const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, is_done }
                     browser.runtime.sendMessage({type: "fetch_api"})
                 }
             }}>{is_done ? "Done" : "Not Done"}</button>
+                </div>
+            </div>
         </div>
     );
 };
