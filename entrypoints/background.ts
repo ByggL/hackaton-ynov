@@ -5,6 +5,13 @@ export default defineBackground(() => {
   browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if(request.type === "fetch_api") {
 
+      // fetch('http://localhost/8000/api')
+      // .then((res) => {
+      //   res.json();
+      // }).then((data) => {
+      //   // processing over there
+      // })
+
       browser.storage.sync.get("doneList").then((res) => {
         let list = res.doneList;
 
