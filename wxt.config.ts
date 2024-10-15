@@ -7,6 +7,10 @@ export default defineConfig({
     action: {
       default_title: 'YTimer',
     },
+    name: "YTimer",
     permissions: ['storage'],
+    icons: {
+      128: '/icon/logo_128.png',
+    },
   }
 });
