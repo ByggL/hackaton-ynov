@@ -37,6 +37,13 @@ const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, is_done }
             setTimeClass('green'); // More than 7 days
         }
 
+        
+        if(days == 0) {
+            if(minutes == 0) return `${hours}h ${minutes}m`;
+            
+            return `${hours}h ${minutes}m`;
+        }
+
         return `${days}d ${hours}h ${minutes}m`;
     };
 
@@ -65,7 +72,7 @@ const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, is_done }
             <a href={repoLink} target="_blank" rel="noopener noreferrer">
                 <h2>{title}</h2>
             </a>
-                        
+
             <div className="content">
                 <div className="info">
                     <p>Date de fin : {formattedEndDate}</p>
