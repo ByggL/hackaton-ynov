@@ -1,3 +1,4 @@
+// @ts-nocheck
 import data from './testData.json';
 
 export default defineBackground(() => {
@@ -26,13 +27,19 @@ export default defineBackground(() => {
     }
 
     if(request.type === "toggle_done") {
+      console.log("toggle done")
       browser.storage.sync.get("doneList").then((res) => {
 
         let list = res.doneList;
-        list[request.title] = true;
+        list[request.title] = request.value;
 
         browser.storage.sync.set({doneList: list});
-      });
+      }).catch(() => {
+        var list = {};
+        list[request.title] = request.value;
+
+        browser.storage.sync.set({doneList: list});
+      })
 
       return true;
     }

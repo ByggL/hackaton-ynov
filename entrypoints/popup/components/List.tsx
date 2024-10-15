@@ -6,7 +6,7 @@ interface ListItem {
     end_date: string;
     group: string;
     repo_link: string;
-    isDone: boolean;
+    is_done: boolean;
 }
 
 interface ListProps {
@@ -23,7 +23,7 @@ const List: React.FC<ListProps> = ({ data }) => {
                     endDate={item.end_date} 
                     group={item.group} 
                     repoLink={item.repo_link} 
-                    isDone={item.isDone} 
+                    is_done={item.is_done} 
                 />
             ))}
         </div>

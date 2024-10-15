@@ -1,28 +1,28 @@
-import { useState, useEffect } from 'react';
-import reactLogo from '@/assets/react.svg';
+import React, { useState, useEffect } from 'react';
 import List from './components/List';
-import wxtLogo from '/wxt.svg';
 import './App.css';
 
-const App = () => {
+function App() {
     /////////// STATE VARIABLES //////////
   const [backendData, setBackendData] = useState();
   //////////////////////////////////////
 
-  // TO BE USED FOR CALLING BACKEND
-  useEffect(() => {
-    browser.runtime.sendMessage({type: "fetch_api"});
-  }, []);
+  // useEffect(() => {
+  //   browser.runtime.sendMessage({type: "fetch_api"});
+  // }, []);
 
-  browser.runtime.onMessage.addListener(function(request,sender, sendResponse) {
+  browser.runtime.sendMessage({type: "fetch_api"});
+
+  browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if(request.type === "fetch_response") {
-      setBackendData(request.data);
+      let fetchedData = request.data;
+      setBackendData(fetchedData);
     }
   })
 
     return (
-        <div className="App">
-            <List data={backendData} />
+        <div className="App" key={JSON.stringify(backendData)}>
+            {backendData ? <List data={backendData} /> : ""}
         </div>
     );
 };

@@ -5,10 +5,10 @@ interface LineItemProps {
     endDate: string;
     group: string;
     repoLink: string;
-    isDone: boolean;
+    is_done: boolean;
 }
 
-const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, isDone }) => {
+const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, is_done }) => {
     const [timeLeft, setTimeLeft] = useState('');
 
     // Function to calculate the time left until the end date
@@ -52,7 +52,17 @@ const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, isDone })
                 <h3>{title}</h3>
             </a>
             <p>End date: {formattedEndDate} | {timeLeft}</p>
-            <button>{isDone ? "Done" : "Not Done"}</button>
+            {/* disabled={is_done} */}
+            <button onClick={() => {
+                if(!is_done) {
+                    browser.runtime.sendMessage({type: "toggle_done", title: title, value: true});
+                    browser.runtime.sendMessage({type: "fetch_api"})
+                }
+                else {
+                    browser.runtime.sendMessage({type: "toggle_done", title: title, value: false});
+                    browser.runtime.sendMessage({type: "fetch_api"})
+                }
+            }}>{is_done ? "Done" : "Not Done"}</button>
         </div>
     );
 };
