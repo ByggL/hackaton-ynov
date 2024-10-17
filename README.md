@@ -29,26 +29,33 @@ The goal here is to be able to see all the deadlines of a student in one place. 
 
 ### Prerequisite for the use of the extension :
 
-- Node.JS version 20.18
-- Composer version TODO
-- Database that can be downloaded on this link TODO
+- Node.JS version 20.18 (with npm 10.9)
+- Composer
+- PHP version 8.1
+- Database that can be downloaded on this link https://github.com/hippot02/hackaton_ynov_back
+- XAMPP 
 
 ### Installation : 
 
-To install the extension, you must first dowload this repository and the one at LINK TODO
+To install the extension, you must first dowload this repository and the one at https://github.com/hippot02/hackaton_ynov_back.
+
 Then, you must install the server and the client.
 
 - Server :
-    Import the database that is prepared on the other git repository locally.
+    Import the database that is prepared on the previously linked git repository locally.
+
+    Download and import ynovback.sql
+
+    Modify your .env with your database URL. 
 
     In the server folder, use command :
     ```
     $ composer install
     ``` 
-    
+
     Then :
     ```
-    $ symfony server:start
+    $ symfony serve
     ```
     
 
@@ -61,23 +68,27 @@ Then, you must install the server and the client.
 
     Run the extension in this environment using :
     ```
-    $ npm start
+    $ npm run
     ```  
 
 ## How to use Ytimer  
 
-Connect to the extension and then, the application will match the tag of your profile with the courses that you have and will automatically look for the assignements that you have left. TODO
+Connect to the extension and then, the application will match the tag of your profile with the courses that you have and will automatically look for the assignements that you have left. 
 
 You can then see on the right of the assignement title, the time left before the deadline.
 
-Once you completed an assignement, you can use the button on the left of the corresponding assignement to indicate that it is done, and then this assignement "won't be shown anymore". TODO
+Once you completed an assignement, you can use the button on the left of the corresponding assignement to indicate that it is done, and then this assignement won't be shown anymore.
 
 ## What was really developped and functionnal TODO (at the end of the project)
 
-Along with the web extension is a back-end administration where you can manage the assignements, tag them for a particular group of student. This API allows to manage the assignements (add, delete, modify them). It returns a JSON that is fetched by the extension and used to display the assignements where the deadline isn't met yet. 
+Along with the web extension is a back-end administration where you can manage the assignements, tag them for a particular group of student. This API allows to manage the assignements (add, delete, modify them). It returns a JSON sorted by time left before deadline. The back-end also don't send the assignements where the deadline is already passed. 
+
+On the front-end, the extension can be opened from an internet navigator, it shows the assignements with their titles, the deadline date and the time left before the deadline. Moreover, each assignement is colored as explained in the first section of this document.
+
+
 
 ## Technologies used for the project TODO
 
 We used a React framework named WXT specialized for web extensions for the front-end. The component-based utilisation was adapted to what we wanted to develop (Many assignements with the same structur).
 
-We used the Symphony framework for the back-end. It allows us to gather the data from a database and to sort them by datetimes before sending it to the front-end, thus simplifying the work in front. 
+We used the Symphony framework for the back-end. It allows us to gather the data from a local database and to sort them by datetimes before sending it to the front-end, thus simplifying the work in front. 
