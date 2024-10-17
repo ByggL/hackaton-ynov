@@ -33,6 +33,8 @@ const LineItem: React.FC<LineItemProps> = ({ title, endDate, repoLink, is_done }
             setTimeClass('red'); // Less than or equal to 2 days
         } else if (difference <= 7 * 24 * 60 * 60 * 1000) {
             setTimeClass('orange'); // Less than or equal to 7 days
+        } else if (is_done) {
+            setTimeClass('grey');
         } else {
             setTimeClass('green'); // More than 7 days
         }

@@ -1,4 +1,4 @@
-# Ytimer 
+# YTimer 
 
 ## Global presentation of the project
 
@@ -14,11 +14,9 @@ It will be presented as described in the following.
     - A link redirecting to the website where the assignement must be submitted
     - A button to indicate that you've completed the assignement
 
-- A button on the top allowing to filter the assignements. 
-
 An assignement is higlighted considering the time left before the deadline : 
-- Green if there is more than 1 week left 
-- Yellow if there is more than 2 days left 
+- Green if there is more than a week left 
+- Yellow if there is less than a week left 
 - Red if there is less than 2 days left 
 
 
@@ -68,27 +66,28 @@ Then, you must install the server and the client.
 
     Run the extension in this environment using :
     ```
-    $ npm run
+    $ npm run dev
     ```  
 
-## How to use Ytimer  
+## How to use YTimer  
 
-Connect to the extension and then, the application will match the tag of your profile with the courses that you have and will automatically look for the assignements that you have left. 
+Connect to the extension and then, the application will automatically look for the assignements that you have left. 
 
-You can then see on the right of the assignement title, the time left before the deadline.
+You can then see within an assigment card the assignement title, the time left before the deadline.
 
-Once you completed an assignement, you can use the button on the left of the corresponding assignement to indicate that it is done, and then this assignement won't be shown anymore.
+Once you completed an assignement, you can use the button on the right of the corresponding assignement to indicate that it is done, and then this assignement will be shown in grey.
+
+NOTE : the 'done' button is purely for personal use, in order to remember which assignments you have already done.
 
 ## What was really developped and functionnal TODO (at the end of the project)
 
-Along with the web extension is a back-end administration where you can manage the assignements, tag them for a particular group of student. This API allows to manage the assignements (add, delete, modify them). It returns a JSON sorted by time left before deadline. The back-end also don't send the assignements where the deadline is already passed. 
+Along with the web extension is a back-end administration where you can manage the assignements and tag them for a particular group of students. This API allows to manage the assignements (add, delete, modify them). It returns a JSON sorted by time left before deadline. The back-end also don't send the assignements if the deadline is already passed or if the assignement is manually marked as "inactive". 
 
 On the front-end, the extension can be opened from an internet navigator, it shows the assignements with their titles, the deadline date and the time left before the deadline. Moreover, each assignement is colored as explained in the first section of this document.
 
 
-
 ## Technologies used for the project TODO
 
-We used a React framework named WXT specialized for web extensions for the front-end. The component-based utilisation was adapted to what we wanted to develop (Many assignements with the same structur).
+We used the **WXT** framework specially made for browser extension development, which was setup to use **React** as a client framework as the component-based utilisation was adapted to what we wanted to develop.
 
-We used the Symphony framework for the back-end. It allows us to gather the data from a local database and to sort them by datetimes before sending it to the front-end, thus simplifying the work in front. 
+We used the PHP-based **Symfony** framework for the back-end. It allows us to gather the data from a local database and to sort them by datetimes before sending it to the front-end, thus simplifying the work in front. 
