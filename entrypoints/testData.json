@@ -1,0 +1,32 @@
+[
+    {
+        "title" : "Rendu Hackaton1",
+        "end_date": "2024-10-15T07:16:13+0000",
+        "group": "M1 Info",
+        "repo_link" : "https://moodle.learn.ynov.com/course/view.php?id=5968"
+    },
+    {
+        "title" : "Rendu Hackaton2",
+        "end_date": "2024-10-16T07:39:11+0000",
+        "group": "M1 Info",
+        "repo_link" : "https://moodle.learn.ynov.com/course/view.php?id=5968"
+    },
+    {
+        "title" : "Rendu Hackaton3",
+        "end_date": "2024-10-17T07:16:13+0000",
+        "group": "M1 Info",
+        "repo_link" : "https://moodle.learn.ynov.com/course/view.php?id=5968"
+    },
+    {
+        "title" : "Rendu Hackaton4",
+        "end_date": "2024-10-30T07:16:13+0000",
+        "group": "M1 Info",
+        "repo_link" : "https://moodle.learn.ynov.com/course/view.php?id=5968"
+    },
+    {
+        "title" : "Rendu Hackaton5",
+        "end_date": "2024-10-20T07:16:13+0000",
+        "group": "M1 Info",
+        "repo_link" : "https://moodle.learn.ynov.com/course/view.php?id=5968"
+    }
+]
