@@ -3,9 +3,9 @@ import LineItem from './Line';
 
 interface ListItem {
     title: string;
-    end_date: string;
+    endDate: string;
     group: string;
-    repo_link: string;
+    repoLink: string;
     is_done: boolean;
 }
 
@@ -20,9 +20,9 @@ const List: React.FC<ListProps> = ({ data }) => {
                 <LineItem 
                     key={index} 
                     title={item.title} 
-                    endDate={item.end_date} 
+                    endDate={item.endDate} 
                     group={item.group} 
-                    repoLink={item.repo_link} 
+                    repoLink={item.repoLink} 
                     is_done={item.is_done} 
                 />
             ))}

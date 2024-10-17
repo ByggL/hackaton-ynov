@@ -6,11 +6,9 @@ function App() {
   const [backendData, setBackendData] = useState();
   //////////////////////////////////////
 
-  // useEffect(() => {
-  //   browser.runtime.sendMessage({type: "fetch_api"});
-  // }, []);
-
-  browser.runtime.sendMessage({type: "fetch_api"});
+  useEffect(() => {
+    browser.runtime.sendMessage({type: "fetch_api"});
+  }, []);
 
   browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if(request.type === "fetch_response") {

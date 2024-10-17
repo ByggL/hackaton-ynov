@@ -1,33 +1,41 @@
 // @ts-nocheck
-import data from './testData.json';
+// import data from './testData.json';
 
 export default defineBackground(() => {
   browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if(request.type === "fetch_api") {
 
-      // fetch('http://localhost/8000/api')
-      // .then((res) => {
-      //   res.json();
-      // }).then((data) => {
-      //   // processing over there
-      // })
-
-      browser.storage.sync.get("doneList").then((res) => {
-        let list = res.doneList;
-
-        const formattedData = data.map((item: any) => {
-          return list[item.title] ? {...item, is_done: list[item.title]} : {...item, is_done: false};
+      fetch('http://localhost:8000/api',{
+        headers: {
+            'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        return response.json();
+      }).then((data) => {
+        browser.storage.sync.get("doneList").then((res) => {
+          let list = res.doneList;
+  
+          const formattedData = data.map((item: any) => {
+            return list[item.title] ? {...item, is_done: list[item.title]} : {...item, is_done: false};
+          })
+  
+          console.log(JSON.stringify(formattedData, null, 4))
+          const now = new Date();
+        const end = new Date(formattedData[0].endDate);
+        const difference = end.getTime() - now.getTime();
+        console.log(difference)
+          browser.runtime.sendMessage({type: "fetch_response", data: formattedData})
+        }).catch(()=> {
+          const formattedData = data.map((item: any) => {
+            return {...item, is_done: false};
+          })
+  
+          console.log(JSON.stringify(formattedData, null, 4));
+          let end = new Date(formattedData[0].endDate);
+          console.log(end.getTime());
+          browser.runtime.sendMessage({type: "fetch_response", data: formattedData})
         })
-
-        console.log(JSON.stringify(formattedData, null, 4))
-        browser.runtime.sendMessage({type: "fetch_response", data: formattedData})
-      }).catch(()=> {
-        const formattedData = data.map((item: any) => {
-          return {...item, is_done: false};
-        })
-
-        console.log(JSON.stringify(formattedData, null, 4))
-        browser.runtime.sendMessage({type: "fetch_response", data: formattedData})
       })
 
       return true;

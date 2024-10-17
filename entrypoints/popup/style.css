@@ -1,5 +1,5 @@
 :root {
-  --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family: Montserrat,montserrat-fallback,sans-serif;
   --line-height: 1.5;
   --font-weight: 400;
   --color-scheme-light: #213547;
@@ -43,16 +43,19 @@ a:hover {
 }
 
 body {
+  max-height: 700px;
   margin: 0;
   display: flex;
   min-width: 300px;
-  min-height: 100vh;
   justify-content: center;
+  padding-bottom: 20px;
 }
 
 h1 {
   line-height: 1.1;
   text-align: center;
+  font-weight: bolder;
+  font-size: xx-large;
 }
 
 button {
@@ -130,4 +133,10 @@ h2 {
 
 div > p {
   margin: 0;
+}
+
+#root {
+  border: 3px solid #1f9e91;
+  border-radius: 10px;
+  padding: 3px;
 }
