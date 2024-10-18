@@ -23,6 +23,7 @@ function App() {
     <div className="App" key={JSON.stringify(backendData)}>
       {/*Display refreshes every time the backend data changes*/}
       {backendData ? <List data={backendData} /> : ""}
+      <p style={{ textAlign: "center", marginTop: "5px" }}>© Ynov 2024</p>
     </div>
   );
 }
