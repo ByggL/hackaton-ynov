@@ -79,14 +79,14 @@ Once you completed an assignement, you can use the button on the right of the co
 
 NOTE : the 'done' button is purely for personal use, in order to remember which assignments you have already done.
 
-## What was really developped and functionnal TODO (at the end of the project)
+## What was really developped and functionnal 
 
 Along with the web extension is a back-end administration where you can manage the assignements and tag them for a particular group of students. This API allows to manage the assignements (add, delete, modify them). It returns a JSON sorted by time left before deadline. The back-end also don't send the assignements if the deadline is already passed or if the assignement is manually marked as "inactive". 
 
 On the front-end, the extension can be opened from an internet navigator, it shows the assignements with their titles, the deadline date and the time left before the deadline. Moreover, each assignement is colored as explained in the first section of this document.
 
 
-## Technologies used for the project TODO
+## Technologies used for the project 
 
 We used the **WXT** framework specially made for browser extension development, which was setup to use **React** as a client framework as the component-based utilisation was adapted to what we wanted to develop.
 
